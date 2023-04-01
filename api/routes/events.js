@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const Event = require('../models/event');
 const City = require('../models/city');
 const Category = require('../models/category');
-const Data = require('../data/data_insert');
+//const Data = require('../data/data_insert');
  
 
 
@@ -69,6 +69,22 @@ router.get('/cities/:city_id', async (req, res, next) => {
       res.status(500).json({ error: 'Internal server error' });
     }
   });
+
+  //GET requests for popular Events 
+router.get('/popular/:popularNum', async (req, res, next) => {
+  const popularCount = req.params.popularNum;
+  try {
+    const docs = await Event.find()
+      .sort({times_clicked: -1})
+      .limit(popularCount)
+      .select('_id name image')
+      .exec();
+    res.status(200).json(docs);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: err });
+  }
+  });
   
 //GET requests for individual Events 
 router.get('/:eventId', (req, res, next) => {
@@ -88,6 +104,8 @@ router.get('/:eventId', (req, res, next) => {
         res.status(500).json({error: err});
     });
 });
+
+
 
 /* router.get('/:category', (req, res, next) => {
     const category = req.params.category;

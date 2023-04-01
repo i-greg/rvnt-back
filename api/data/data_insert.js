@@ -8,7 +8,6 @@ const dummyData = require('./data');
 
 for (let i = 0; i < dummyData.length; i++) {
   const obj = dummyData[i];
-  console.log(obj);
   insertDataToDb(obj); 
 };
 
