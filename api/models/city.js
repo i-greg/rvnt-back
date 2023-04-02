@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const citySchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    city: { type: String, required: true},
+    city: { type: String, required: true, unique: true},
     events: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Event' }]
 });
 

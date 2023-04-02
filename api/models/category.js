@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const categorySchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    category: { type: String, required: true },
+    category: { type: String, required: true, unique: true},
     category_img: { type: String, required: true},
     events: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Event' }]
 });

@@ -5,9 +5,11 @@ const mongoose = require('mongoose');
 const Event = require('../models/event');
 const City = require('../models/city');
 const Category = require('../models/category');
-//const Data = require('../data/data_insert');
+const Data = require('../data/data_insert');
  
 
+
+//Should create different routes for category and city possibly
 
 //Get All Categories
 router.get('/categories', async (req, res, next) => {
@@ -105,6 +107,19 @@ router.get('/:eventId', (req, res, next) => {
     });
 });
 
+//Get All Events
+router.get('/', async (req, res, next) => {
+
+  try {
+    const results = await Event
+    .find()
+    .select('_id name');
+    res.json(results);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error retrieving events from database' });
+  }
+});
 
 
 /* router.get('/:category', (req, res, next) => {
