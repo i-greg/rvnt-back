@@ -2,31 +2,31 @@ const mongoose = require('mongoose');
 
 const events = [
     {
-        name: 'Iron Maiden', time: '10:00 AM', price: 50, date: '2023-04-01', location: 'Eightball', 
+        name: 'Iron Maiden', time: ['10:00 AM'], price: 50, date: ['2023-04-01'], location: 'Eightball', 
         image: 'https://dynamicmedia.livenationinternational.com/p/l/n/e427255d-0ffa-41d5-bf2a-ce3d03108427.jpg', tickets_total: 100, tickets_remaining: 50, times_clicked: 40, 
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         city: 'Heraklion',category: 'Music Event'
     },
     {
-        name: 'The Phanom of The Opera', time: '09:00 AM', price: 20, date: '2023-04-01', location: 'Μέγαρο Μουσικής', 
+        name: 'The Phanom of The Opera', time: ['09:00 AM'], price: 20, date: ['2023-04-01'], location: 'Μέγαρο Μουσικής', 
         image: 'https://cdn.londonandpartners.com/asset/the-phantom-of-the-opera-musical-at-her-majestys-theatre_phantom-of-the-opera-image-courtesy-of-cameron-mackintosh_240b6958e824776c4b4b222d72281b95.jpg', tickets_total: 100, tickets_remaining: 50, times_clicked: 30, 
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         city: 'Athens',category: 'Theater'
     },
     {
-        name: 'The Clash', time: '09:00 PM', price: 20, date: '2023-04-28' , location: 'Gagarin', 
+        name: 'The Clash', time: ['09:00 PM'], price: 20, date: ['2023-04-28'] , location: 'Gagarin', 
         image: 'https://render.fineartamerica.com/images/rendered/default/poster/10/8/break/images/artworkimages/medium/2/the-clash-in-london-gus-stewart.jpg', tickets_total: 100, tickets_remaining: 50, times_clicked: 0, 
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         city: 'Ioannina',category: 'Music Event'
     },
     {
-        name: 'Dogville', time: '09:00 PM', price: 22, date: '2023-04-27', location: 'Νέος Ακάδημος', 
+        name: 'Dogville', time: ['6:00 PM', '09:00 PM'], price: 22, date: ['2023-04-27', '2023-04-28'], location: 'Νέος Ακάδημος', 
         image: 'https://www.athinorama.gr/Content/ImagesDatabase/d7/d7f96a71bf9b452a8265da02d661dc9a.jpg?width=741&quality=80', tickets_total: 100, tickets_remaining: 50, times_clicked: 0, 
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         city: 'Athens',category: 'Theater'
     },
     {
-        name: 'Paok vs Aris', time: '08:30 PM', price: 22, date: '2023-04-22', location: 'Γήπεδο Τούμπας', 
+        name: 'Paok vs Aris', time: ['08:30 PM'], price: 22, date: ['2023-04-22'], location: 'Γήπεδο Τούμπας', 
         image: 'https://cityportal.gr/wp-content/uploads/2023/01/%CF%80%CE%B1%CE%BF%CE%BA-%CE%B1%CF%81%CE%B7%CF%82.jpg', tickets_total: 100, tickets_remaining: 50, times_clicked: 0, 
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         city: 'Thessaloniki',category: 'Sports'

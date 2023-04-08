@@ -4,6 +4,8 @@ const { nextTick } = require('process');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const eventRoutes = require('./api/routes/events');
+const cityRoutes = require('./api/routes/cities');
+const categoryRoutes = require('./api/routes/categories');
 const orderRoutes = require('./api/routes/orders');
 
 
@@ -27,6 +29,8 @@ app.use((req, res, next) => {
 
 //request routes
 app.use('/events', eventRoutes);
+app.use('/cities', cityRoutes);
+app.use('/categories', categoryRoutes);
 app.use('/orders', orderRoutes);
 
 //error hanlding

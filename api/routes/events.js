@@ -9,26 +9,8 @@ const Data = require('../data/data_insert');
  
 
 
-//Should create different routes for category and city possibly
-
-//Get All Categories
-router.get('/categories', async (req, res, next) => {
-
-    try {
-      const results = await Category
-      .find()
-      .select('_id category category_img');
-      res.json(results);
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Error retrieving categories from database' });
-    }
-  });
-  
-
-
-//Get All Events for TypeOfEvent
-router.get('/categories/:category_id', async (req, res, next) => {
+//Get All Events by category
+router.get('/category/:category_id', async (req, res, next) => {
     const eventType = req.params.category_id;
   
     try {
@@ -41,22 +23,9 @@ router.get('/categories/:category_id', async (req, res, next) => {
     }
   });
 
-  //Get All Cities
-  router.get('/cities', async (req, res, next) => {
-
-    try {
-      const results = await City
-      .find()
-      .select('_id city');
-      res.json(results);
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Error retrieving cities from database' });
-    }
-  });
 
 //Get All Events for a City
-router.get('/cities/:city_id', async (req, res, next) => {
+router.get('/city/:city_id', async (req, res, next) => {
     const city = req.params.city_id;
   
     try {
@@ -88,18 +57,27 @@ router.get('/popular/:popularNum', async (req, res, next) => {
   }
   });
   
-//GET requests for individual Events 
+//GET request for individual Event
 router.get('/:eventId', (req, res, next) => {
     const id = req.params.eventId;
     Event.findById(id)
+    .populate('city_id', 'city') // populate city field from City collection and include only name field
+    .populate('category_id', 'category') // populate category field from Category collection and include only name field
     .exec()
     .then(doc => {
         console.log(doc);
         if (doc) {
-            res.status(200).json(doc);
+            //Increment times_clicked by 1
+            doc.times_clicked = doc.times_clicked + 1;
+            //Save the updated document to the database
+            return doc.save();
         } else {
             res.status(404).json({message: 'Page Not Found! :( '});
         }
+    })
+    .then(updatedDoc => {
+      //Send the updated document as response
+      res.status(200).json(updatedDoc);
     })
     .catch(err => {
         console.log(err);
